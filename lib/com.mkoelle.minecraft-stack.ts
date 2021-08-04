@@ -8,22 +8,22 @@ export class ComMkoelleMinecraftStack extends cdk.Stack {
     super(scope, id, props);
 
     // The code that defines your stack goes here
-    const vpc = new ec2.Vpc(this, "MyVpc", {
-      maxAzs: 3 // Default is all AZs in region
+    const vpc = ec2.Vpc.fromLookup(this, 'default-vpc', {
+      isDefault: true
     });
 
-    const cluster = new ecs.Cluster(this, "MyCluster", {
+    const cluster = new ecs.Cluster(this, "Cluster", {
       vpc: vpc
     });
 
     // Create a load-balanced Fargate service and make it public
-    new ecs_patterns.ApplicationLoadBalancedFargateService(this, "MyFargateService", {
+    new ecs_patterns.ApplicationLoadBalancedFargateService(this, "Service", {
       cluster: cluster, // Required
       cpu: 512, // Default is 256
       desiredCount: 1, // Default is 1
       taskImageOptions: { image: ecs.ContainerImage.fromRegistry("amazon/amazon-ecs-sample") },
       memoryLimitMiB: 2048, // Default is 512
-      publicLoadBalancer: false // Default is false
+      publicLoadBalancer: true // Default is false
     });
   }
 }
