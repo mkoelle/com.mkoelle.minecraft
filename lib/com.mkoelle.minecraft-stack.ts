@@ -12,18 +12,21 @@ export class ComMkoelleMinecraftStack extends cdk.Stack {
       isDefault: true
     });
 
-    const cluster = new ecs.Cluster(this, "Cluster", {
-      vpc: vpc
+    const cluster = new ecs.Cluster(this, "cluster", {
+      vpc: vpc,
+      capacityProviders: ['FARGATE_SPOT']
     });
 
     // Create a load-balanced Fargate service and make it public
-    new ecs_patterns.ApplicationLoadBalancedFargateService(this, "Service", {
+    new ecs_patterns.ApplicationLoadBalancedFargateService(this, "minecraft", {
       cluster: cluster, // Required
       cpu: 512, // Default is 256
       desiredCount: 1, // Default is 1
       taskImageOptions: { image: ecs.ContainerImage.fromRegistry("amazon/amazon-ecs-sample") },
       memoryLimitMiB: 2048, // Default is 512
-      publicLoadBalancer: true // Default is false
+      publicLoadBalancer: true, // Default is false
+      assignPublicIp: true,
     });
+
   }
 }
