@@ -26,3 +26,11 @@ function cdk-set-profile {
   export CDK_DEFAULT_REGION="us-east-1"
 }
 ```
+
+## Launch the server locally
+
+```sh
+cd app
+docker build . -t sample-app
+docker run -it -p 8080:80 sample-app
+```
