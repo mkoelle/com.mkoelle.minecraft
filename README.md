@@ -31,8 +31,12 @@ function cdk-set-profile {
 
 ```sh
 cd app
+# build the container
 docker build . -t sample-app
+# Launch the container in interactive mode
 docker run -it -p 8080:80 sample-app
+# Launch the container in interactive mode, bypassing the start script
+docker run -it -p 8080:80 sample-app sh
 # security scan of the image
 trivy image --ignore-unfixed sample-app
 ```
