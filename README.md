@@ -33,4 +33,14 @@ function cdk-set-profile {
 cd app
 docker build . -t sample-app
 docker run -it -p 8080:80 sample-app
+# security scan of the image
+trivy image --ignore-unfixed sample-app
+```
+
+## development tools
+
+[Trivy](https://aquasecurity.github.io/trivy/v0.18.0/installation/) to scan docker for vulnerabilities.
+
+```sh
+brew install aquasecurity/trivy/trivy
 ```
