@@ -1,0 +1,19 @@
+swagger:
+  outputDirectory: ./dist
+  entryFile: 
+    - ./src/*
+  outputFormat: OpenApi_3
+  name: game manager
+  description: A rest based execution wrapper for remotely hosted games
+  license: MIT
+  produces: [application/json]
+  version: 0.0.1
+  # securityDefinitions:
+  #   default:
+  #     type: apiKey
+  #     in: header
+  #     name: Authorization
+  #   secondAuthenticator:
+  #     type: apiKey
+  #     in: header
+  #     name: Authorization
