@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
     "tsc": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cucumber-js --require-module ts-node/register --require features/**/*.ts",
+    "test:gen": "cucumber-js --require-module ts-node/register --require features/**/*.ts --format snippets",
     "start": "./node_modules/.bin/ts-node src/index.ts",
     "build": "npm run clean && tsc && npm run swagger",
     "lint": "eslint . --ext .ts --fix",
@@ -19,6 +23,8 @@
     "typescript-rest-swagger": "^1.1.7"
   },
   "devDependencies": {
+    "@cucumber/cucumber": "^7.3.1",
+    "@types/node": "^16.7.2",
     "@typescript-eslint/eslint-plugin": "^4.29.2",
     "@typescript-eslint/parser": "^4.29.2",
     "eslint": "^7.32.0",
