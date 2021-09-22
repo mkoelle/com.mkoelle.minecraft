@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "tsc": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc","test": "./node_modules/.bin/cucumber-js -p default",
     "start": "./node_modules/.bin/ts-node src/index.ts",
     "build": "npm run clean && tsc && npm run swagger",
     "lint": "eslint . --ext .ts --fix",
@@ -19,8 +18,13 @@
     "typescript-rest-swagger": "^1.1.7"
   },
   "devDependencies": {
+    "@cucumber/cucumber": "^7.3.1",
+    "@types/chai": "^4.2.22",
     "@typescript-eslint/eslint-plugin": "^4.29.2",
     "@typescript-eslint/parser": "^4.29.2",
+    "chai": "^4.3.4",
+    "cucumber-pretty": "^6.0.0",
+    "cucumber-tsflow": "^4.0.0-preview.7",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.24.0",
